@@ -19,11 +19,13 @@
 # along with Ansible.  If not, see <http://www.gnu.org/licenses/>.
 
 
-DOCUMENTATION = """
+DOCUMENTATION = '''
+---
 module: gluster_volume
 short_description: Manage GlusterFs volumes
 description:
   - Create, remove, start, stop and tune GlusterFS volumes
+version_added: "1.9"
 options:
   name:
     required: true
@@ -33,8 +35,7 @@ options:
     required: true
     choices: [ 'present', 'absent', 'started', 'stopped' ]
     description:
-      - Mode of operation: present/absent ensure if a module exists or not.
-        started/stopped make sure it is enabled or not.
+      - present/absent ensure if a module exists or not. started/stopped make sure it is enabled or not.
   cluster:
     required: false
     description:
@@ -86,9 +87,9 @@ notes:
   - "Requires cli tools for GlusterFS on servers"
   - "Will add new bricks, but not remove them"
 author: Taneli Leppä
-"""
+'''
 
-EXAMPLES = """
+EXAMPLES = '''
 - name: create gluster volume
   gluster_volume: state=present name=test1 brick=/bricks/brick1/g1 rebalance=yes hosts:"{{ play_hosts }}"
   run_once: true
@@ -107,7 +108,7 @@ EXAMPLES = """
 
 - name: remove gluster volume
   gluster_volume: state=absent name=test1
-"""
+'''
 
 import shutil
 import time
